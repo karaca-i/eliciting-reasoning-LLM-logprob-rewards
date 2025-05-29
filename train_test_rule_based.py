@@ -240,7 +240,7 @@ trainer = GRPOTrainer(
     ],
     args = training_args,
     train_dataset = dataset,
-    output_dir = "outputs_old/outputs_exact_match_final_kesin",
+    output_dir = "outputs/outputs_exact_match_final",
 )
 latest = None # Set to None to start from scratch
 trainer.train(resume_from_checkpoint = latest) # Set to "latest" to resume training
@@ -291,7 +291,7 @@ printc(output)
 
 dataset = get_gsm8k_questions("test")
 printc(len(dataset))
-dataset = dataset.select(range(100))  # type: ignore
+dataset = dataset.select(range(200))  # type: ignore
 
 
 checkpoints = [
@@ -313,7 +313,7 @@ checkpoints = [
 ]
 
 for checkpoint in checkpoints:
-    load_name = f"outputs_old/outputs_exact_match_final_kesin/{checkpoint}"
+    load_name = f"outputs/outputs_exact_match_final/{checkpoint}"
 
     total = 0
     correct = 0

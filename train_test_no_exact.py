@@ -7,7 +7,7 @@ from trl.trainer.utils import selective_log_softmax
 max_seq_length = 1024 # Can increase for longer reasoning traces
 lora_rank = 64 # Larger rank = smarter, but slower
 
-save_name = "saved_1_no_exact_final_bucuk"
+save_name = "saved_1500_no_exact_final"
 
 def printc(text, color="red"):
     colors = {
@@ -240,7 +240,7 @@ trainer = GRPOTrainer(
     ],
     args = training_args,
     train_dataset = dataset,
-    output_dir = "outputs_old/outputs_no_exact_match_final_kesin_bucuk",
+    output_dir = "outputs/outputs_no_exact_match_final",
 )
 latest = None # Set to None to start from scratch
 trainer.train(resume_from_checkpoint = latest) # Set to "latest" to resume training
@@ -273,7 +273,7 @@ printc(output)
 
 dataset = get_gsm8k_questions("test")
 printc(len(dataset))
-dataset = dataset.select(range(100))  # type: ignore
+dataset = dataset.select(range(200))  # type: ignore
 
 
 checkpoints = [
@@ -290,7 +290,7 @@ checkpoints = [
 ]
 
 for checkpoint in checkpoints:
-    load_name = f"outputs_old/outputs_no_exact_match_final_kesin_bucuk/{checkpoint}"
+    load_name = f"outputs/outputs_no_exact_match_final/{checkpoint}"
 
     total = 0
     correct = 0
