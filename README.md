@@ -68,10 +68,22 @@ This project investigates how log-probability-based reward signals can be used t
    ```
 3. **Run experiments**
 
-    There are 3 experiments that can be run in this repo. Run the following to obtain log-probability reward based LoRA checkpoints.
+    There are 3 experiments that can be run in this repo. 
+    
+    Run the following to obtain log-probability reward based LoRA checkpoints:
     ```bash
-    pip install unsloth vllm
+    python train_test_logprob_1_5_reward.py
     ```
+    Run the following to obtain exact match reward based LoRA checkpoints:
+    ```bash
+    python train_test_rule_based.py
+    ```
+    Run the following to obtain only formatting reward based LoRA checkpoints:
+    ```bash
+    python train_test_no_exact.py
+    ```
+    Each of these codes first runs training for 1500 steps and outputs checkpoints inside the outputs folder, then evaluates them with 200 GSM8K questions.
+
 
 ## Contributing
 
