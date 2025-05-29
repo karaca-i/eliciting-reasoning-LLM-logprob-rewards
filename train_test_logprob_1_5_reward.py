@@ -12,7 +12,7 @@ from torch.nn import functional as F
 max_seq_length = 1024 # Can increase for longer reasoning traces
 lora_rank = 64 # Larger rank = smarter, but slower
 
-save_name = "saved_1_1000_logprob_final_ege_3_0"
+save_name = "saved_1500_logprob_final"
 
 def printc(text, color="red"):
     colors = {
@@ -110,7 +110,7 @@ def correctness_reward_func(prompts, completions, answer, **kwargs) -> list[floa
     extracted_responses = [extract_xml_answer(r) for r in responses]
     #print('-'*20, f"Question:\n{q}", f"\nAnswer:\n{answer[0]}", f"\nResponse:\n{responses[0]}", f"\nExtracted:\n{extracted_responses[0]}")
 
-    with open('responses.txt', 'a') as f:
+    with open('responses_logprob.txt', 'a') as f:
         f.write(f"Question:\n{q}\n")
         f.write(f"Answer:\n{answer[0]}\n")
         f.write(f"Response:\n{responses[0]}\n")
@@ -318,7 +318,7 @@ printc(output)
 
 dataset = get_gsm8k_questions("test")
 printc(len(dataset))
-dataset = dataset.select(range(100))  # type: ignore
+dataset = dataset.select(range(200))  # type: ignore
 
 
 checkpoints = [
@@ -372,7 +372,7 @@ for checkpoint in checkpoints:
             correct += 1
         total += 1
 
-        with open('responses_logprob_final_kesin.txt', 'a') as f:
+        with open('responses_logprob_final.txt', 'a') as f:
             f.write(f"Question:\n{question_}\n")
             f.write(f"Answer:\n{gold}\n")
             f.write(f"Response:\n{output}\n")
