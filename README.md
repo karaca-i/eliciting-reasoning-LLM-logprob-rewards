@@ -84,7 +84,10 @@ This project investigates how log-probability-based reward signals can be used t
     ```
     Each of these codes first runs training for 1500 steps and outputs checkpoints inside the outputs folder, then evaluates them with 200 GSM8K questions.
 
-
+   To evaluate a given LoRA checkpoint, you can also run the evaluate.py script. Update load_name_prefix with the correct LoRA checkpoint path and run
+   ```bash
+    python evaluate.py
+    ```
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request.
